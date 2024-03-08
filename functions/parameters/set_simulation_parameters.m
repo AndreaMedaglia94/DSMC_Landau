@@ -7,7 +7,7 @@ p_sim.N  = 1e6;
 % % % time paramteres % % %
 
 % final time of the simulation
-p_sim.tf  = 5;
+p_sim.tf  = 10;
 
 % time step
 p_sim.dt  = 0.1; 
@@ -34,9 +34,9 @@ p_sim.t_plt  = 1;
 % % % parameters for initial data % % %
 
 % temperature along the x-y-z axis
-p_sim.Tx = 1 ;
-p_sim.Ty = 1 ;
-p_sim.Tz = 1 ; 
+p_sim.Tx = 0.07 ;
+p_sim.Ty = 0.07 ;
+p_sim.Tz = 0.05 ; 
 
 % total initial temperature
 p_sim.Ttot = (p_sim.Tx + p_sim.Ty + p_sim.Tz) / 3 ;

@@ -17,4 +17,5 @@ p_phys.rho = 1;
 
 % coulomb logarithm
 p_phys.Lambda = 0.5 ;
+
 end

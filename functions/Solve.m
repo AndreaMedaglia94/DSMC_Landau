@@ -20,11 +20,11 @@ if strcmp(p_sch.coll, 'NB')
             [obs{1,counter_obs}, obs{2,counter_obs}, obs{3,counter_obs}, obs{4,counter_obs}, obs{5,counter_obs}]= Observables(vx, vy, vz, p_sim);
         end
         
-        if mod(n*p_sim.dt,p_sim.t_plt)==0
-            counter_plt = counter_plt + 1 ;
-            distr{1,counter_plt}   = reconstruction(vx, vy, vz, p_sim, p_phys) ;
-            distr{2,counter_plt}   = compute_marginal(vx, vy, vz, p_sim, p_phys);
-        end
+%         if mod(n*p_sim.dt,p_sim.t_plt)==0
+%             counter_plt = counter_plt + 1 ;
+%             distr{1,counter_plt}   = reconstruction(vx, vy, vz, p_sim, p_phys) ;
+%             distr{2,counter_plt}   = compute_marginal(vx, vy, vz, p_sim, p_phys);
+%         end
 
      end    
     

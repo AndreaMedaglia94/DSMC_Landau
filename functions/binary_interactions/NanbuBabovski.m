@@ -30,7 +30,7 @@ if strcmp(p_sch.kernel, 'D1')
 %     ct    = getCost(U,A,N,M);
 elseif strcmp(p_sch.kernel, 'D2')
     tau0    = p_sim.epsi ./ ( 2*p_phys.rho ) .* one_over_tau;
-    nu_tau0 = (1 - 2 .* tt) ;
+    nu_tau0 = (1 - 2 .* tau0) ;
     ct    = nu_tau0 .*( tau0<=1 ) + (-1) .* ( tau0>1 );
 elseif strcmp(p_sch.kernel, 'D3')
     tau0  = p_sim.epsi ./ ( 2*p_phys.rho ) .* one_over_tau;
