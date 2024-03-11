@@ -1,8 +1,8 @@
 function p_sch = set_scheme_parameters
 
 % % % choose the test
-% p_sch.test = 'BKW' ;
-p_sch.test = 'Trub' ;
+p_sch.test = 'BKW' ;
+% p_sch.test = 'Trub' ;
 
 % % % choose the DSMC scheme: Nanbu-Babovski (NB) or Bird (B)
 p_sch.coll = 'NB';
@@ -19,7 +19,7 @@ p_sch.pot = 'Maxwell' ;
 
 % % % plot
 p_sch.init_conditions = 'NO' ;
-p_sch.transient       = 'YES' ;
+p_sch.transient       = 'NO' ;
 
 if strcmp(p_sch.test, 'BKW')
     fprintf('BKW Test \n');

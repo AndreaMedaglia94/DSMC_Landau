@@ -1,7 +1,7 @@
 function p_sim = set_simulation_parameters(p_sch, p_phys)
 
 % number of particles
-p_sim.N  = 1e6; 
+p_sim.N  = 1e5; 
 
 
 % % % time paramteres % % %
@@ -34,9 +34,9 @@ p_sim.t_plt  = 1;
 % % % parameters for initial data % % %
 
 % temperature along the x-y-z axis
-p_sim.Tx = 0.07 ;
-p_sim.Ty = 0.07 ;
-p_sim.Tz = 0.05 ; 
+p_sim.Tx = 1 ;
+p_sim.Ty = 1 ;
+p_sim.Tz = 1 ; 
 
 % total initial temperature
 p_sim.Ttot = (p_sim.Tx + p_sim.Ty + p_sim.Tz) / 3 ;
