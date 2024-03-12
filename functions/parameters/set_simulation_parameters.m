@@ -1,7 +1,7 @@
 function p_sim = set_simulation_parameters(p_sch, p_phys)
 
 % number of particles
-p_sim.N  = 1e6; 
+p_sim.N  = 5e6; 
 
 
 % % % time paramteres % % %
@@ -79,5 +79,18 @@ p_sim.VEdges_exact = linspace(-p_sim.L, p_sim.L, p_sim.Nexact);
 p_sim.dV_exact     = p_sim.VEdges_exact(2) - p_sim.VEdges_exact(1) ;
 p_sim.VCells_exact = p_sim.VEdges_exact(1:end-1) + p_sim.dV_exact/2 ;
 [p_sim.Vx_exact,p_sim.Vy_exact,p_sim.Vz_exact] = meshgrid(p_sim.VCells_exact,p_sim.VCells_exact,p_sim.VCells_exact);
+
+% % % other parameters % % %
+
+% NonLinear equation for A
+if strcmp(p_sch.kernel, 'D1')
+    if strcmp(p_sch.pot, 'Maxwell')
+        nonlineq   = @(x) (coth(x)-1./x-exp(-p_sim.epsi)) ;
+        options    = optimset('TolX',1e-24);
+        p_sim.A    = fzero(nonlineq, 1./p_sim.epsi,options);
+    elseif strcmp(p_sch.pot, 'Coulomb')
+        p_sim.nonlineq =  @(x,y) (coth(x)-1/x-exp(-y)) ;
+    end
+end
 
 end

@@ -28,6 +28,6 @@ for n=1:p_sim.ntot
 
  end    
     
-fprintf('Done \n\n');
-
+fprintf('Done \n');
+fprintf('----------------------------------------------------------------------- \n\n\n');
 end

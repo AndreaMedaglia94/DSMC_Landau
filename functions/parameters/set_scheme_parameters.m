@@ -1,13 +1,14 @@
 function p_sch = set_scheme_parameters
 
 % % % choose the test
-% p_sch.test = 'BKW' ;
-p_sch.test = 'Trub' ;
+p_sch.test = 'BKW' ;
+% p_sch.test = 'Trub' ;
 
 % % % choose the DSMC scheme: Nanbu-Babovski (NB)
 p_sch.coll = 'NB';
 
 % % % choose the approximated surrogate kernel D^i_* i=2,3
+% p_sch.kernel = 'D1' ;
 % p_sch.kernel = 'D2' ;
 p_sch.kernel = 'D3' ;
 
@@ -40,7 +41,9 @@ else
     stop     
 end
 
-if strcmp(p_sch.kernel, 'D2')
+if strcmp(p_sch.kernel, 'D1')
+    fprintf('Approximated collisional kernel D1 \n');
+elseif strcmp(p_sch.kernel, 'D2')
     fprintf('Approximated collisional kernel D2 \n');
 elseif strcmp(p_sch.kernel, 'D3')
     fprintf('Approximated collisional kernel D3 \n');    
@@ -50,9 +53,9 @@ else
 end
 
 if strcmp(p_sch.pot, 'Maxwell')
-    fprintf('Interaction potential: Maxwell \n\n');
+    fprintf('Interaction potential: Maxwell \n');
 elseif strcmp(p_sch.pot, 'Coulomb')
-    fprintf('Interaction potential: Coulomb \n\n');
+    fprintf('Interaction potential: Coulomb \n');
 else
     fprintf('Error: no interaction potential has been selected \n');
     stop     

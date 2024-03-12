@@ -25,9 +25,14 @@ end
 
 
 if strcmp(p_sch.kernel, 'D1')
-%     A     = getA(par.tau,one_over_t,par.rho,N,M);
-%     U     = rand(N/2,1); 
-%     ct    = getCost(U,A,N,M);
+    if strcmp( p_sch.pot, 'Maxwell') 
+        U   = rand(p_sim.N/2,1); 
+        ct  = 1 ./ p_sim.A .* log( exp(-p_sim.A) + 2 .* U .* sinh(p_sim.A) );
+    elseif strcmp( p_sch.pot, 'Coulomb') 
+        A   = getA(p_sim, one_over_tau, p_phys);
+        U   = rand(p_sim.N/2,1);  
+        ct  = getCost(U,A);
+    end
 elseif strcmp(p_sch.kernel, 'D2')
     tau0    = p_sim.epsi ./ ( 2*p_phys.rho ) .* one_over_tau;
     nu_tau0 = (1 - 2 .* tau0) ;

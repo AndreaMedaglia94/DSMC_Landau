@@ -1,43 +1,19 @@
-function [A] = getA(tau,one_over_t,rho,N,M)
+function A = getA(p_sim, one_over_tau, p_phys)
 
-global collision_type
+s   = p_sim.epsi ./ p_phys.rho .* one_over_tau ;
+A   = zeros(p_sim.N/2, 1);
 
-if strcmp(collision_type, 'NB')
-    s       = tau ./ rho .* one_over_t ;
-    A       = zeros(N/2,M);
-    
-    options = optimset('TolX',1e-24);
-    
-    for i=1:N/2
-        for k=1:M
-            fun     = @(x) (coth(x)-1/x-exp(-s(i,k))) ;
-            if s(i,k) < 5e-3
-                A(i,k) = 1/s(i,k) ;
-            elseif s(i,k) > 5e3
-                A(i,k)  = 1e-8 ;
-            else
-                A(i,k)  = fzero(fun, 1/s(i,k), options ); 
-            end
-        end
+options = optimset('TolX',1e-24);
+
+for i=1:p_sim.N/2
+    if s(i) < 5e-3
+        A(i) = 1/s(i) ;
+    elseif s(i) > 5e3
+        A(i)  = 1e-8 ;
+    else
+        fun   = @(x) p_sim.nonlineq(x,s(i));
+        A(i)  = fzero(fun, 1/s(i), options ); 
     end
-
-elseif strcmp(collision_type, 'Bird')
-    s       = tau ./ rho .* one_over_t ;
-    A       = zeros(1,M);
-    
-    options = optimset('TolX',1e-24);
-
-    for k=1:M
-        fun     = @(x) (coth(x)-1/x-exp(-s(k))) ;
-        if s(k) < 1e-4
-            A(k) = 1/s(k) ;
-        elseif s(k) > 5e3
-            A(k)  = 1e-11 ;
-        else
-            A(k)  = fzero(fun, 1/s(k), options ); 
-        end
-    end
-   
 end
 
 end
