@@ -14,13 +14,13 @@ if strcmp(p_sch.test, 'BKW')
     hold on
     plot(p_sim.time_obs, zeros(size(p_sim.time_obs)) ,'k-','LineWidth',1.5)
     plot(p_sim.time_obs,M2_numerics,'r*','LineWidth',1.2,'MarkerSize',8)
-    plot(p_sim.time_obs, ones(size(p_sim.time_obs)) .* 3./2 ,'k--','LineWidth',1.5)
+    plot(p_sim.time_obs, ones(size(p_sim.time_obs)) .* p_sim.Ttot .* 3./2 ,'k--','LineWidth',1.5)
     hold off
     xlabel('$t$','Interpreter','latex','FontSize',15)
     title('First and Second order moment','Interpreter','latex','FontSize',15)
     legend('$\mathrm{M}1(t)$ DSMC', '$\mathrm{M}1(t)$ Exact', '$\mathrm{M}2(t)$ DSMC', '$\mathrm{M}2(t)$ Exact','Interpreter','latex','FontSize',15,'location','best')
     legend boxoff
-    ylim([-0.5 2])
+    ylim([-0.5 (max(M2_numerics)+0.2*max(M2_numerics))])
 
     % 4th order moment
     figure(2)
@@ -32,7 +32,7 @@ if strcmp(p_sch.test, 'BKW')
     legend('$\mathrm{M}4(t)$ DSMC', '$\mathrm{M}4(t)$ Exact','Interpreter','latex','FontSize',15,'location','best')
     legend boxoff
     title('Fourth order moment','Interpreter','latex','FontSize',15)
-    ylim([7.5 9.1])
+    ylim([(min(M4)-0.01*min(M4)) (max(M4)+0.01*max(M4))])
 
     % Marginals at fixed times
     for i=0:p_sim.t_plt:p_sim.tf
@@ -48,7 +48,6 @@ if strcmp(p_sch.test, 'BKW')
         legend('Exact BKW', 'DSMC', 'interpreter', 'latex', 'Location','northeast','FontSize',15)
         legend boxoff
         xlabel('$v_x$','interpreter', 'latex','FontSize',15)
-        ylim([0 0.45])
 
         titl = sprintf('Marginal $f(v,t)$, $t=%d$', i);
         title(titl,'interpreter', 'latex','FontSize',15)

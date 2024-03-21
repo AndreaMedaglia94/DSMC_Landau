@@ -2,10 +2,10 @@ function [vx, vy, vz] = InitialDataBKW(p_sim)
 
 % sample initial data from the BKW solution by inverting the cumulative
 
-% set some parameter to define the cumulative
-K  = p_sim.Ttot * ( 1 - p_sim.BKW_C .* exp(-4 .* p_sim.BKW_B .* p_sim.BKW_t) );
+% set some parameter to define the cumulative as if Ttot = 1 
+K  = 1 * ( 1 - p_sim.BKW_C .* exp(-4 .* p_sim.BKW_B .* p_sim.BKW_t) );
 norm = 1./(2.*pi.*K).^(3/2);
-c2   = ( p_sim.Ttot - K ) ./ ( 2.*K.^2 ) ;
+c2   = ( 1 - K ) ./ ( 2.*K.^2 ) ;
 b  = 2 * K ;
 
 % sample random numbers 

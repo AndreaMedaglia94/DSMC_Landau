@@ -1,7 +1,7 @@
 function p_sim = set_simulation_parameters(p_sch, p_phys)
 
 % number of particles
-p_sim.N  = 5e6; 
+p_sim.N  = 1e6; 
 
 
 % % % time paramteres % % %
@@ -38,9 +38,9 @@ p_sim.t_plt  = 1;
 
 % temperature along the x-y-z axis
 if strcmp(p_sch.test, 'BKW')
-    p_sim.Tx = 1 ;
-    p_sim.Ty = 1 ;
-    p_sim.Tz = 1 ; 
+    p_sim.Tx = 2 ;
+    p_sim.Ty = 2 ;
+    p_sim.Tz = 2 ; 
 
     p_sim.BKW_B = 1/8;
     p_sim.BKW_C = 2/5;
