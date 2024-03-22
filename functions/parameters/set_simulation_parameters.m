@@ -70,12 +70,12 @@ p_sim.Nbins  = 50;
 p_sim.Nexact = 100;
 
 % edges and step for the histogram reconstruction 
-p_sim.VEdges = linspace(-p_sim.L, p_sim.L, p_sim.Nbins);
+p_sim.VEdges = linspace(-p_sim.L, p_sim.L, p_sim.Nbins+1);
 p_sim.dV     = p_sim.VEdges(2) - p_sim.VEdges(1) ;
 p_sim.VCells = p_sim.VEdges(1:end-1) + p_sim.dV/2 ;
 
 % edges and step for the exact solution
-p_sim.VEdges_exact = linspace(-p_sim.L, p_sim.L, p_sim.Nexact);
+p_sim.VEdges_exact = linspace(-p_sim.L, p_sim.L, p_sim.Nexact+1);
 p_sim.dV_exact     = p_sim.VEdges_exact(2) - p_sim.VEdges_exact(1) ;
 p_sim.VCells_exact = p_sim.VEdges_exact(1:end-1) + p_sim.dV_exact/2 ;
 [p_sim.Vx_exact,p_sim.Vy_exact,p_sim.Vz_exact] = meshgrid(p_sim.VCells_exact,p_sim.VCells_exact,p_sim.VCells_exact);
