@@ -1,7 +1,7 @@
 function p_sim = set_simulation_parameters(p_sch, p_phys)
 
 % number of particles
-p_sim.N  = 1e6; 
+p_sim.N  = 5e6; 
 
 
 % % % time paramteres % % %
@@ -18,10 +18,11 @@ elseif strcmp(p_sch.test, 'Trub')
 end
 
 % time step
-p_sim.dt  = 0.1; 
+p_sim.dt  = 0.05; 
 
 % parameter epsilon approximating the Boltzmann equation
-p_sim.epsi = p_phys.rho * p_sim.dt ./ 0.75 ; 
+p_sim.epsi = p_phys.rho * p_sim.dt ./ (3-sqrt(5)) ; 
+% p_sim.epsi = p_phys.rho * p_sim.dt  ; 
 
 p_sim.dt_tilde = p_phys.rho .* p_sim.dt ./ p_sim.epsi ;
 

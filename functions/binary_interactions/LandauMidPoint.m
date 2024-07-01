@@ -82,7 +82,10 @@ Ncol_3 = floor( p3 * p_sim.N / 2 ) *2 ;         % P(f_1,f_1)
 Ncol_0 = p_sim.N - Ncol_1 - Ncol_2 - Ncol_3 ;   % no coll
 
 % random coupling
-% j  = randperm(p_sim.N); 
+% j   = randperm(p_sim.N); 
+% wx  = wx(j); wx_1 = wx_1(j) ;
+% wy  = wy(j); wy_1 = wy_1(j) ;
+% wz  = wz(j); wz_1 = wz_1(j) ;
 
 j0   = 1:Ncol_0 ;
 
@@ -93,7 +96,7 @@ j2   = Ncol_0+Ncol_1+1:Ncol_0+Ncol_1+Ncol_2 ;
 j2_1 = j2(1:Ncol_2/2); j2_2 = j2(Ncol_2/2+1:Ncol_2);
 
 j3   = Ncol_0+Ncol_1+Ncol_2+1:Ncol_0+Ncol_1+Ncol_2+Ncol_3 ;
-j3_1 = j3(1:Ncol_3/2); j3_2 = j2(Ncol_3/2+1:Ncol_3);
+j3_1 = j3(1:Ncol_3/2); j3_2 = j3(Ncol_3/2+1:Ncol_3);
 
 % Pre-interaction opinions
 % wx, wy, wz = f_0 

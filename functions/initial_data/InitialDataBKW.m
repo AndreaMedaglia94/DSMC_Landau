@@ -11,7 +11,7 @@ b  = 2 * K ;
 % sample random numbers 
 xi = rand(p_sim.N,1);
 % and evaluate the inverse of the cumulative on this numbers
-xx     = linspace(0,5,1000);
+xx     = linspace(0,6,1000);
 yy     = 4.*pi.*norm.*c2.*( 3./8.*sqrt(pi).*b.^(5./2).*erf(xx./sqrt(b)) - b./4.*exp(-xx.^2./b).*(3.*b.*xx + 2.*xx.^3) );
 rr     = interp1(yy,xx,xi);
 
