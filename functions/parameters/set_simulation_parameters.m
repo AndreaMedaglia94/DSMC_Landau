@@ -21,7 +21,9 @@ end
 p_sim.dt  = 0.1; 
 
 % parameter epsilon approximating the Boltzmann equation
-p_sim.epsi = p_phys.rho * p_sim.dt; 
+p_sim.epsi = p_phys.rho * p_sim.dt ./ 0.75 ; 
+
+p_sim.dt_tilde = p_phys.rho .* p_sim.dt ./ p_sim.epsi ;
 
 % total number of steps
 p_sim.ntot   = ceil(p_sim.tf / p_sim.dt);
