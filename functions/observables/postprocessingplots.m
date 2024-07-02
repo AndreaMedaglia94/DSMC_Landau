@@ -34,26 +34,41 @@ if strcmp(p_sch.test, 'BKW')
     title('Fourth order moment','Interpreter','latex','FontSize',15)
     ylim([(min(M4)-0.01*min(M4)) (max(M4)+0.01*max(M4))])
 
+    % L2 errors
+    figure(3)
+    plot(p_sim.time_obs, abs( M4_numerics - M4 ) )
+    xlabel('$t$','Interpreter','latex','FontSize',15)
+    title('L2 Error fourth order moment','Interpreter','latex','FontSize',15)
+
     % Marginals at fixed times
     for i=0:p_sim.t_plt:p_sim.tf
-        figure(i+3)
+        
 
         f1D = distr{2,i+1};
-        [~, f_BKW_1D, ~] = BKW_analytic(p_sim, i) ;
-        
-        plot(p_sim.VCells_exact, f_BKW_1D, 'k-','LineWidth',1.5)
-        hold on
-        plot(p_sim.VCells, f1D, 'ro','LineWidth',1.2,'MarkerSize',8)
-        hold off
-        legend('Exact BKW', 'DSMC', 'interpreter', 'latex', 'Location','northeast','FontSize',15)
-        legend boxoff
-        xlabel('$v_x$','interpreter', 'latex','FontSize',15)
+        f3D = distr{1,i+1};
+        [f_BKW_3D, f_BKW_1D, ~] = BKW_analytic(p_sim, i) ;
 
-        titl = sprintf('Marginal $f(v,t)$, $t=%d$', i);
-        title(titl,'interpreter', 'latex','FontSize',15)
+        % figure(i+4)
+        % plot(p_sim.VCells_exact, f_BKW_1D, 'k-','LineWidth',1.5)
+        % hold on
+        % plot(p_sim.VCells, f1D, 'ro','LineWidth',1.2,'MarkerSize',8)
+        % hold off
+        % legend('Exact BKW', 'DSMC', 'interpreter', 'latex', 'Location','northeast','FontSize',15)
+        % legend boxoff
+        % xlabel('$v_x$','interpreter', 'latex','FontSize',15)
+        % 
+        % titl = sprintf('Marginal $f(v,t)$, $t=%d$', i);
+        % title(titl,'interpreter', 'latex','FontSize',15)
+        % 
+        % drawnow
 
-        drawnow
+        err(i+1) = sqrt(  sum( (f3D-f_BKW_3D).^2,"all" ) .* p_sim.dV.^3  );
     end
+
+    figure(i+5)
+    plot(0:p_sim.tf, err)
+    xlabel('$t$','Interpreter','latex','FontSize',15)
+    title('L2 Error distribution','Interpreter','latex','FontSize',15)
 
 
 

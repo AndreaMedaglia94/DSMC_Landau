@@ -7,6 +7,9 @@ p_sch.test = 'BKW' ;
 % % % choose the DSMC scheme: Nanbu-Babovski (NB)
 p_sch.coll = 'NB';
 
+% % % choose the time order
+p_sch.timeorder = 2 ;
+
 % % % choose the approximated surrogate kernel D^i_* i=2,3
 % p_sch.kernel = 'D1' ;
 % p_sch.kernel = 'D2' ;
@@ -58,6 +61,15 @@ elseif strcmp(p_sch.pot, 'Coulomb')
     fprintf('Interaction potential: Coulomb \n');
 else
     fprintf('Error: no interaction potential has been selected \n');
+    stop     
+end
+
+if p_sch.timeorder == 1
+    fprintf('First order Forward Eueler scheme in time \n');
+elseif p_sch.timeorder == 2
+    fprintf('Second order Midpoint method in time \n');
+else
+    fprintf('Error: no time scheme has been selected \n');
     stop     
 end
 

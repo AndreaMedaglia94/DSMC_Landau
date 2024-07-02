@@ -45,6 +45,6 @@ postprocessingplots(obs,distr,p_sim,p_phys,p_sch) ;
 
 fprintf('----------------------------------------------------------------------- \n');
 fprintf('Direct Simulation Monte Carlo for the space homogeneous Landau equation \n\n');
-fprintf('Code written by Andrea Medaglia (last update 01/07/2024) \n');
+fprintf('Code written by Andrea Medaglia (last update 02/07/2024) \n');
 fprintf('https://doi.org/10.1016/j.jcp.2024.112845 \n');
 fprintf('----------------------------------------------------------------------- \n\n');

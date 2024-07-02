@@ -1,14 +1,14 @@
 function p_sim = set_simulation_parameters(p_sch, p_phys)
 
 % number of particles
-p_sim.N  = 5e6; 
+p_sim.N  = 1e6; 
 
 
 % % % time paramteres % % %
 
 % final time of the simulation
 if strcmp(p_sch.test, 'BKW')
-    p_sim.tf  = 4;
+    p_sim.tf  = 12;
 elseif strcmp(p_sch.test, 'Trub')
     if strcmp(p_sch.pot, 'Maxwell')
         p_sim.tf  = 3;
@@ -21,8 +21,11 @@ end
 p_sim.dt  = 0.05; 
 
 % parameter epsilon approximating the Boltzmann equation
-p_sim.epsi = p_phys.rho * p_sim.dt ./ (3-sqrt(5)) ; 
-% p_sim.epsi = p_phys.rho * p_sim.dt  ; 
+if p_sch.timeorder == 2
+    p_sim.epsi = p_phys.rho * p_sim.dt ./ (3-sqrt(5)) ; 
+elseif p_sch.timeorder == 1
+    p_sim.epsi = p_phys.rho * p_sim.dt  ; 
+end
 
 p_sim.dt_tilde = p_phys.rho .* p_sim.dt ./ p_sim.epsi ;
 
@@ -69,8 +72,8 @@ p_sim.Ttot = (p_sim.Tx + p_sim.Ty + p_sim.Tz) / 3 ;
 p_sim.L     = 5;
 
 % number of bins per direction for the histogram reconstruction
-p_sim.Nbins  = 50;
-p_sim.Nexact = 100;
+p_sim.Nbins  = 100;
+p_sim.Nexact = p_sim.Nbins;
 
 % edges and step for the histogram reconstruction 
 p_sim.VEdges = linspace(-p_sim.L, p_sim.L, p_sim.Nbins+1);

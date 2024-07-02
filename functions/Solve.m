@@ -11,8 +11,11 @@ for n=1:p_sim.ntot
     
     fprintf('t=%f\n',n*p_sim.dt);
 
-    % [vx, vy, vz] = NanbuBabovski(vx, vy, vz, p_sch, p_sim, p_phys);
-    [vx, vy, vz] = LandauMidPoint(vx, vy, vz, p_sch, p_sim, p_phys);
+    if p_sch.timeorder == 2
+        [vx, vy, vz] = LandauMidPoint(vx, vy, vz, p_sch, p_sim, p_phys);
+    elseif p_sch.timeorder == 1
+        [vx, vy, vz] = NanbuBabovski(vx, vy, vz, p_sch, p_sim, p_phys);
+    end
     
     if mod(n*p_sim.dt,p_sim.t_obs)==0
         counter_obs = counter_obs + 1 ;
